@@ -2,7 +2,7 @@
  * Created by: Zabil Tahir
  * Date Created: 1/24/22
  * Last Edited By: Zabil Tahir
- * Last Edited Date: 1/24/22
+ * Last Edited Date: 1/25/22
  * 
  * Description: Spawn multiple cube prefabs into the scene.
  * **/
@@ -20,7 +20,7 @@ public class RandomCubes : MonoBehaviour
     public int numCubes = 0;
     public int radius = 7;
     public float spawnDelay = 5;
-    public float rotateSpeed = 90;
+   
 
 
 
@@ -39,8 +39,6 @@ public class RandomCubes : MonoBehaviour
         {
 
             SpawnCubes();
-           
-
         }
     }
     void SpawnCubes()
@@ -49,9 +47,8 @@ public class RandomCubes : MonoBehaviour
 
         Vector3 randomSpawn = Random.insideUnitCircle * radius; //have it spawn in random location within a radius
 
-        randomSpawn = new Vector3(randomSpawn.x, 5, randomSpawn.y);
-
-        float angle = rotateSpeed * Time.deltaTime;
+        randomSpawn = new Vector3(randomSpawn.x, 7, randomSpawn.y);
+        
         GameObject Go = Instantiate(Cubes, randomSpawn, Quaternion.identity) as GameObject; //actually spawn the prefab and then assign it as a gameobject during runtime
 
         Go.GetComponent<MeshRenderer>().material.color = Color.HSVToRGB(Random.value, Random.value, Random.value); //have all the cubes be different colors for fun
@@ -65,7 +62,6 @@ public class RandomCubes : MonoBehaviour
         if (numCubes < MaxCubes)
         {
             return Time.time >= nextSpawnTime;
-
         }
         else
         {
